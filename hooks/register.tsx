@@ -2,11 +2,13 @@ import type { Register, ThemeSetArgs } from 'claude-code'
 
 import { CHRISTMAS_LOOK, CHRISTMAS_PROBLEMS, CHRISTMAS_SCENE } from './christmas'
 import { COSMOS_LOOK, COSMOS_PROBLEMS, COSMOS_SCENE } from './cosmos'
+import { OCEAN_LOOK, OCEAN_PROBLEMS, OCEAN_SCENE } from './ocean'
 
 // テーマを増やすときはここに1行足す
 const LOOKS: Record<string, { label: string; look: ThemeSetArgs; scene: string; problems: readonly string[] }> = {
   christmas: { label: 'クリスマス', look: CHRISTMAS_LOOK, scene: CHRISTMAS_SCENE, problems: CHRISTMAS_PROBLEMS },
   cosmos: { label: '宇宙', look: COSMOS_LOOK, scene: COSMOS_SCENE, problems: COSMOS_PROBLEMS },
+  ocean: { label: '海', look: OCEAN_LOOK, scene: OCEAN_SCENE, problems: OCEAN_PROBLEMS },
 }
 const DEFAULT = 'christmas'
 const NAMES = Object.keys(LOOKS)
@@ -63,6 +65,9 @@ export const register: Register = on => {
     }
     if (e.props.scene === 'cosmos') {
       return <Svg source={COSMOS_SCENE} alt="星がまたたき、流れ星やロケット、UFO が飛び、惑星とブラックホールが浮かぶ宇宙" isInteractive />
+    }
+    if (e.props.scene === 'ocean') {
+      return <Svg source={OCEAN_SCENE} alt="光の差し込む海の中、泡がのぼり、魚の群れとクジラ、ウミガメ、クラゲが泳ぎ、海藻と珊瑚がゆれる" isInteractive />
     }
     return next(e)
   })
